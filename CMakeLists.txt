@@ -3,8 +3,13 @@ project(word2vec)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-set(CMAKE_CXX_FLAGE "${CMAKE_CXX_FLATS} -lm -pthread -O3 -march=native -Wall -funroll-loops -Wno-unused-result")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lm -pthread -O3 -march=native -Wall -funroll-loops -Wno-unused-result")
+
+link_libraries(pthread)
+
+if (UNIX)
+    link_libraries(m)
+endif(UNIX)
 
 set(WORD2VEC_SOURCE word2vec.c)
 set(WORD2PHRASE_SOURCE word2phrase.c)
